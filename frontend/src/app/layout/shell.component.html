@@ -6,13 +6,6 @@
     [opened]="isHandset() ? false : sidenavOpened()"
     class="shell-sidenav">
 
-    <!-- Bulle collapse (en haut, bord droit de la sidenav) -->
-    <button class="collapse-bubble"
-            (click)="toggleSidenav()"
-            aria-label="Fermer le menu">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-
     <!-- Marque -->
     <div class="brand">
       <div class="brand-icon">
@@ -53,14 +46,12 @@
   <!-- ── Contenu ──────────────────────────────────────────────── -->
   <mat-sidenav-content class="shell-content">
 
-    <!-- Bulle réouverture (visible seulement quand sidenav fermée) -->
-    @if (!sidenavOpened()) {
-      <button class="open-bubble"
-              (click)="toggleSidenav()"
-              aria-label="Ouvrir le menu">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    }
+    <!-- Bulle unique — toujours dans le contenu, icône inversée selon état -->
+    <button class="toggle-bubble"
+            (click)="toggleSidenav()"
+            [attr.aria-label]="sidenavOpened() ? 'Fermer le menu' : 'Ouvrir le menu'">
+      <mat-icon>{{ sidenavOpened() ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
 
     <main class="shell-main">
       <router-outlet />
