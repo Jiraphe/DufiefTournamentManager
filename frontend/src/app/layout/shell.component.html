@@ -1,0 +1,68 @@
+<mat-sidenav-container class="shell-container">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────── -->
+  <mat-sidenav
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="isHandset() ? false : sidenavOpened()"
+    class="shell-sidenav">
+
+    <!-- Logo / Titre -->
+    <div class="sidenav-header">
+      <mat-icon class="app-icon">emoji_events</mat-icon>
+      <span class="app-title">Dufief</span>
+    </div>
+
+    <mat-divider />
+
+    <!-- Navigation -->
+    <mat-nav-list>
+      @for (item of navItems; track item.route) {
+        <a mat-list-item
+           [routerLink]="item.route"
+           routerLinkActive="active-link"
+           [matTooltip]="item.label"
+           matTooltipPosition="right">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+    </mat-nav-list>
+
+    <mat-divider />
+
+    <!-- Bas de sidenav -->
+    <mat-nav-list class="sidenav-bottom">
+      <a mat-list-item routerLink="/settings">
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span matListItemTitle>Paramètres</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <!-- ── Contenu principal ────────────────────────────────────── -->
+  <mat-sidenav-content class="shell-content">
+
+    <!-- Toolbar -->
+    <mat-toolbar color="primary" class="shell-toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Tournament Manager</span>
+      <span class="spacer"></span>
+      <button mat-icon-button aria-label="Notifications">
+        <mat-icon>notifications_none</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Compte">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Vue active (lazy-loaded) -->
+    <main class="shell-main">
+      <router-outlet />
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
