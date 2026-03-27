@@ -1,33 +1,58 @@
 <mat-sidenav-container class="shell-container">
 
+  <!-- ── Sidenav ──────────────────────────────────────────────── -->
   <mat-sidenav
     [mode]="isHandset() ? 'over' : 'side'"
     [opened]="isHandset() ? false : sidenavOpened()"
     class="shell-sidenav">
 
-    <div class="sidenav-header">
-      <mat-icon class="app-icon">emoji_events</mat-icon>
-      <span class="app-title">Dufief</span>
+    <!-- Marque -->
+    <div class="brand">
+      <div class="brand-icon">
+        <mat-icon>emoji_events</mat-icon>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Dufief</span>
+        <span class="brand-tagline">Tournament Manager</span>
+      </div>
     </div>
 
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>dashboard</mat-icon>
-        <span matListItemTitle>Dashboard</span>
-      </a>
-    </mat-nav-list>
+    <!-- Navigation -->
+    <nav class="sidenav-nav">
+      <p class="nav-section-label">Menu</p>
+      <mat-nav-list>
+        <a mat-list-item
+           routerLink="/dashboard"
+           routerLinkActive="active-link"
+           #rla="routerLinkActive">
+          <mat-icon matListItemIcon [class.active-icon]="rla.isActive">dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+      </mat-nav-list>
+    </nav>
 
   </mat-sidenav>
 
+  <!-- ── Contenu ──────────────────────────────────────────────── -->
   <mat-sidenav-content class="shell-content">
 
-    <mat-toolbar color="primary" class="shell-toolbar">
+    <!-- Topbar -->
+    <header class="topbar">
       <button mat-icon-button (click)="toggleSidenav()" aria-label="Menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="toolbar-title">Tournament Manager</span>
-    </mat-toolbar>
 
+      <span class="topbar-spacer"></span>
+
+      <!-- Toggle thème -->
+      <button mat-icon-button
+              (click)="theme.toggle()"
+              [matTooltip]="theme.isDark() ? 'Thème clair' : 'Thème sombre'">
+        <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </header>
+
+    <!-- Vue active -->
     <main class="shell-main">
       <router-outlet />
     </main>

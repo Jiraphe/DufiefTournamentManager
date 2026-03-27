@@ -9,6 +9,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ThemeService } from '../core/theme.service';
 
 @Component({
   selector: 'app-shell',
@@ -23,12 +25,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
   ],
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss',
 })
 export class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  readonly theme = inject(ThemeService);
 
   readonly isHandset = toSignal(
     this.breakpointObserver

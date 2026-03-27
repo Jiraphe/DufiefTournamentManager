@@ -1,10 +1,23 @@
 @use '@angular/material' as mat;
 
-html {
+// ── Thème clair (défaut) ──────────────────────────────────────────
+:root {
   @include mat.theme((
     color: (
       theme-type: light,
-      primary: mat.$violet-palette,
+      primary: mat.$cyan-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// ── Thème sombre ──────────────────────────────────────────────────
+:root.dark-theme {
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$cyan-palette,
     ),
     typography: Roboto,
     density: 0,

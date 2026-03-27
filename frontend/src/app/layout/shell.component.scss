@@ -1,57 +1,110 @@
+// ── Conteneur global ──────────────────────────────────────────────
 .shell-container {
   height: 100vh;
 }
 
+// ── Sidenav ───────────────────────────────────────────────────────
 .shell-sidenav {
-  width: 240px;
+  width: 256px;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--mat-sys-surface-container-low);
 }
 
-.sidenav-header {
+// Marque
+.brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 20px 16px;
+  gap: 14px;
+  padding: 24px 20px 20px;
 
-  .app-icon {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
-    color: var(--mat-sys-primary);
+  .brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background-color: var(--mat-sys-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    mat-icon {
+      color: var(--mat-sys-on-primary);
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
   }
 
-  .app-title {
-    font-size: 1.25rem;
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .brand-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .brand-tagline {
+    font-size: 0.72rem;
+    color: var(--mat-sys-on-surface-variant);
+    letter-spacing: 0.3px;
+  }
+}
+
+// Navigation
+.sidenav-nav {
+  padding: 8px 12px;
+
+  .nav-section-label {
+    margin: 8px 8px 4px;
+    font-size: 0.7rem;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mat-sys-on-surface-variant);
   }
 }
 
 .active-link {
-  background-color: var(--mat-sys-secondary-container);
-  color: var(--mat-sys-on-secondary-container);
-  border-radius: 0 28px 28px 0;
-  margin-right: 12px;
+  background-color: var(--mat-sys-primary-container) !important;
+  border-radius: 12px;
+  font-weight: 600;
 }
 
-.shell-toolbar {
+.active-icon {
+  color: var(--mat-sys-on-primary-container);
+}
+
+// ── Topbar ────────────────────────────────────────────────────────
+.topbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  height: 64px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface);
   position: sticky;
   top: 0;
   z-index: 100;
 
-  .toolbar-title {
-    margin-left: 8px;
-    font-size: 1.1rem;
-    font-weight: 500;
+  .topbar-spacer {
+    flex: 1;
   }
 }
 
+// ── Contenu ───────────────────────────────────────────────────────
 .shell-content {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  background-color: var(--mat-sys-surface-container-lowest);
 }
 
 .shell-main {
   flex: 1;
-  padding: 24px;
-  background-color: var(--mat-sys-surface-variant, #f5f5f5);
+  padding: 32px;
 }
