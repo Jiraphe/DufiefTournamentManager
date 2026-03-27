@@ -1,62 +1,60 @@
-<mat-sidenav-container class="shell-container">
+<div class="shell" [class.nav-closed]="!sidenavOpened()">
 
-  <!-- ── Sidenav ──────────────────────────────────────────────── -->
-  <mat-sidenav
-    [mode]="isHandset() ? 'over' : 'side'"
-    [opened]="isHandset() ? false : sidenavOpened()"
-    class="shell-sidenav">
+  <!-- ── Sidebar ──────────────────────────────────────────────── -->
+  <aside class="sidebar">
 
-    <!-- Marque -->
-    <div class="brand">
-      <div class="brand-icon">
-        <mat-icon>emoji_events</mat-icon>
+    <!-- En-tête : marque + bouton collapse -->
+    <div class="sidebar-head">
+      <div class="brand">
+        <div class="brand-icon">
+          <mat-icon>emoji_events</mat-icon>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Dufief</span>
+          <span class="brand-sub">Tournament Manager</span>
+        </div>
       </div>
-      <div class="brand-text">
-        <span class="brand-name">Dufief</span>
-        <span class="brand-tagline">Tournament Manager</span>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="sidenav-nav">
-      <p class="nav-section-label">Menu</p>
-      <mat-nav-list>
-        <a mat-list-item
-           routerLink="/dashboard"
-           routerLinkActive="active-link"
-           #rla="routerLinkActive">
-          <mat-icon matListItemIcon [class.active-icon]="rla.isActive">dashboard</mat-icon>
-          <span matListItemTitle>Dashboard</span>
-        </a>
-      </mat-nav-list>
-    </nav>
-
-    <!-- Bas de sidenav -->
-    <div class="sidenav-footer">
-      <button mat-icon-button
-              (click)="theme.toggle()"
-              [matTooltip]="theme.isDark() ? 'Thème clair' : 'Thème sombre'"
-              class="theme-btn">
-        <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      <button class="collapse-btn"
+              (click)="toggleSidenav()"
+                           matTooltip="Réduire"
+              matTooltipPosition="right">
+        <mat-icon>keyboard_double_arrow_left</mat-icon>
       </button>
     </div>
 
-  </mat-sidenav>
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <span class="nav-section">Menu</span>
+      <a class="nav-item"
+         routerLink="/dashboard"
+         routerLinkActive="nav-item--active"
+         matRipple>
+        <mat-icon class="nav-icon">dashboard</mat-icon>
+        <span class="nav-label">Dashboard</span>
+      </a>
+    </nav>
+
+    <!-- Pied : toggle thème -->
+    <div class="sidebar-foot">
+      <button class="theme-btn" (click)="theme.toggle()" matRipple>
+        <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        <span>{{ theme.isDark() ? 'Thème clair' : 'Thème sombre' }}</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Onglet réouverture (visible seulement sidebar fermée) -->
+  <button class="reopen-tab"
+          (click)="toggleSidenav()"
+          matTooltip="Ouvrir le menu"
+          matTooltipPosition="right">
+    <mat-icon>keyboard_double_arrow_right</mat-icon>
+  </button>
 
   <!-- ── Contenu ──────────────────────────────────────────────── -->
-  <mat-sidenav-content class="shell-content">
+  <main class="shell-content">
+    <router-outlet />
+  </main>
 
-    <!-- Bulle unique — toujours dans le contenu, icône inversée selon état -->
-    <button class="toggle-bubble"
-            (click)="toggleSidenav()"
-            [attr.aria-label]="sidenavOpened() ? 'Fermer le menu' : 'Ouvrir le menu'">
-      <mat-icon>{{ sidenavOpened() ? 'chevron_left' : 'chevron_right' }}</mat-icon>
-    </button>
-
-    <main class="shell-main">
-      <router-outlet />
-    </main>
-
-  </mat-sidenav-content>
-
-</mat-sidenav-container>
+</div>
