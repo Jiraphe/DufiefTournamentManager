@@ -31,28 +31,29 @@
       </mat-nav-list>
     </nav>
 
+    <!-- Bas de sidenav -->
+    <div class="sidenav-footer">
+      <button mat-icon-button
+              (click)="theme.toggle()"
+              [matTooltip]="theme.isDark() ? 'Thème clair' : 'Thème sombre'"
+              class="theme-btn">
+        <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </div>
+
   </mat-sidenav>
 
   <!-- ── Contenu ──────────────────────────────────────────────── -->
   <mat-sidenav-content class="shell-content">
 
-    <!-- Topbar -->
-    <header class="topbar">
-      <button mat-icon-button (click)="toggleSidenav()" aria-label="Menu">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <!-- Bulle de collapse -->
+    <button class="collapse-bubble"
+            [class.collapsed]="!sidenavOpened()"
+            (click)="toggleSidenav()"
+            [attr.aria-label]="sidenavOpened() ? 'Fermer le menu' : 'Ouvrir le menu'">
+      <mat-icon>{{ sidenavOpened() ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
 
-      <span class="topbar-spacer"></span>
-
-      <!-- Toggle thème -->
-      <button mat-icon-button
-              (click)="theme.toggle()"
-              [matTooltip]="theme.isDark() ? 'Thème clair' : 'Thème sombre'">
-        <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
-      </button>
-    </header>
-
-    <!-- Vue active -->
     <main class="shell-main">
       <router-outlet />
     </main>

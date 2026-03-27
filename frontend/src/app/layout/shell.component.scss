@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 24px 20px 20px;
+  padding: 28px 20px 20px;
 
   .brand-icon {
     width: 44px;
@@ -58,6 +58,7 @@
 
 // Navigation
 .sidenav-nav {
+  flex: 1;
   padding: 8px 12px;
 
   .nav-section-label {
@@ -80,20 +81,54 @@
   color: var(--mat-sys-on-primary-container);
 }
 
-// ── Topbar ────────────────────────────────────────────────────────
-.topbar {
+// Bas de sidenav
+.sidenav-footer {
+  padding: 12px 16px 20px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  display: flex;
+  justify-content: flex-start;
+
+  .theme-btn {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+// ── Bulle de collapse ─────────────────────────────────────────────
+.collapse-bubble {
+  position: fixed;
+  left: 244px; // 256px - 12px (moitié du bouton)
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface-variant);
+  cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 8px 16px;
-  height: 64px;
-  border-bottom: 1px solid var(--mat-sys-outline-variant);
-  background-color: var(--mat-sys-surface);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
-  .topbar-spacer {
-    flex: 1;
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+  }
+
+  &:hover {
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+    border-color: var(--mat-sys-primary);
+  }
+
+  &.collapsed {
+    left: -2px;
   }
 }
 
