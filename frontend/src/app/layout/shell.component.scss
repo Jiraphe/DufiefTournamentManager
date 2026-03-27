@@ -4,8 +4,6 @@
 
 .shell-sidenav {
   width: 240px;
-  display: flex;
-  flex-direction: column;
 }
 
 .sidenav-header {
@@ -24,12 +22,7 @@
   .app-title {
     font-size: 1.25rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
   }
-}
-
-.sidenav-bottom {
-  margin-top: auto;
 }
 
 .active-link {
@@ -37,10 +30,6 @@
   color: var(--mat-sys-on-secondary-container);
   border-radius: 0 28px 28px 0;
   margin-right: 12px;
-
-  mat-icon {
-    color: var(--mat-sys-on-secondary-container);
-  }
 }
 
 .shell-toolbar {
@@ -49,13 +38,9 @@
   z-index: 100;
 
   .toolbar-title {
+    margin-left: 8px;
     font-size: 1.1rem;
     font-weight: 500;
-    margin-left: 8px;
-  }
-
-  .spacer {
-    flex: 1;
   }
 }
 
