@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(find C:/workspace/Dufief/backend/node_modules/prisma -name *.d.ts)",
+      "Bash(find C:/workspace/Dufief/frontend/node_modules/@apollo/client -name *.d.ts)",
+      "Bash(docker compose:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  }
+}
